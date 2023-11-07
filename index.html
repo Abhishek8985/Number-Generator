@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Object Model: 30 Days Of JavaScript</title>
+</head>
+<body>
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            else if (num <= 3) return true;
+            else if (num % 2 === 0 || num % 3 === 0) return false;
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        function generateNumbers() {
+            const num = document.getElementById('num').value;
+            const box = document.getElementById('number-box');
+            box.innerHTML = '';
+            for (let i = 0; i <= num; i++) {
+                let numberdiv = document.createElement('div');
+                numberdiv.textContent = i;
+                if(i==2){
+                    numberdiv.style.backgroundColor='red';
+                }
+                else if (i % 2 === 0) {
+                    numberdiv.style.backgroundColor = 'green';
+                } else {
+                    if (isPrime(i)) {
+                        numberdiv.style.backgroundColor = 'red';
+                    } else {
+                        numberdiv.style.backgroundColor = 'yellow';
+                    }
+                }
+                numberdiv.style.height='50px';
+                numberdiv.style.textAlign='center';
+                box.appendChild(numberdiv);
+            }
+        }
+
+        const container = document.createElement('div');
+        container.style.border = '2px solid black';
+        container.style.height = '1000px';
+        container.style.width = '790px';
+        container.style.position = 'relative';
+        container.style.left = '300px';
+        document.body.appendChild(container);
+
+        const heading1 = document.createElement('h1');
+        heading1.textContent = 'NUMBER GENERATOR';
+        heading1.style.margin = '10px 205px';
+        container.appendChild(heading1);
+
+        const heading2 = document.createElement('h2');
+        heading2.textContent = '30 Days Of JavaScript DOM Day 3';
+        heading2.style.margin = '0px 200px';
+        container.appendChild(heading2);
+
+        const heading3 = document.createElement('h3');
+        heading3.textContent = 'Author Asabeneh';
+        heading3.style.margin = '0px 300px';
+        container.appendChild(heading3);
+
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = 'num';
+        input.style.margin = '30px 30px 50px 200px';
+        container.appendChild(input);
+
+        const button = document.createElement('button');
+        button.innerText = 'Generate Numbers';
+        button.addEventListener('click', generateNumbers);
+        container.appendChild(button);
+
+        const box = document.createElement('div');
+        box.id = 'number-box';
+        box.style.display = 'grid';
+        box.style.gridTemplateColumns = '80px 80px 80px 80px 80px 80px 80px 80px 80px';
+        box.style.gap = '7px';
+        container.appendChild(box);
+
+        for(let i=0;i<=50;i++)
+        {
+            let numberdiv=document.createElement('div');
+            numberdiv.innerHTML=i
+            if(i==2){
+                numberdiv.style.backgroundColor='red';
+                }
+            else if(i%2 == 0){
+                numberdiv.style.backgroundColor='green';
+            }
+            else{
+                if(isPrime(i)){
+                    numberdiv.style.backgroundColor='red';
+                }
+                else{
+                    numberdiv.style.backgroundColor='yellow';
+                }
+            }
+            numberdiv.style.height='50px';
+            numberdiv.style.textAlign='center';
+            box.appendChild(numberdiv);
+        }
+
+    </script>
+</body>
+</html>
